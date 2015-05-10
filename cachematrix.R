@@ -1,9 +1,15 @@
-## Put comments here that give an overall description of what your
-## functions do
+## this is a set of two functions.  
+## makeCacheMatrix() captures a matrix
+## cachesolve calculates the inverse of the matrix and keeps its value
+## in memory.
 
-## Write a short comment describing this function
+## makeCacheMatrix stores a squared matrix.  If matrix is not squared
+## there is no inverse.  The function generates an error if a non-squared
+## matrix is entered
 
 makeCacheMatrix <- function(x = matrix()) {
+        if (!(nrow(x) == ncol(x)))
+            stop("Please enter a squared matrix")
         m <- NULL
         set <- function(y){
                 x <<- y
@@ -20,10 +26,12 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## cacheSolve takes the squared matrix and calcualtes the inverse
+## it stores the inverse in m.  Wen this function is run for a second time
+## on the same matrix, the inverse is already stored in m, so the function
+## returns m (doesn't not calcualte the inverse again)
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
         m <- x$getmatrix()
         if(!is.null(m)){
                 message("getting cached matrix")
